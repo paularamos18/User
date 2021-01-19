@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Usuarios.Models.Usuarios>
+
+@*Se agrega el modal*@
+<p class="mt-3 text-center">
+    <a data-toggle="modal" data-target="#AddModal" class="nav navbar-brand text-light btn btn-primary pl-3 pr-3" href="#">Agregar Usuario</a>
+</p>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-12 bg-primary">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApellidoMaterno)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApellidoPaterno)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Telefono)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ciudad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Correo)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ciudad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Correo)
+                                </td>
+                                <
+                                <td>
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning fas fa-edit text-light" })
+                                    @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-success fas fa-eye" })
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fas fa-trash" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @*MODAL*@
+    <div class="modal fade text-primary" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            @*COLOR DE FONDO DE EN MEDIO*@
+            <div class="modal-content">
+                @*COLOR DE FONDO DE LA PARTE DE ARRIBA*@
+                <div class="modal-header bg-light">
+                    <h2 class="modal-title  text-center " id="exampleModalLabel">Agregar usuario</h2>
+                    <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="@Url.Action("Create","Usuarios" )" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <label class="col-md-6 col-form-label">  Usuario   </label>
+                                <label class="col-md-6 col-form-label"> Nombre  </label>
+                                <input type="text" value="" name="Nombre" class="form-control" />
+
+                                <label class="col-md-6 col-form-label">  CURP   </label>
+                                <input type="text" value="" name="ApellidoPaterno" class="form-control" />
+
+                                <label class="col-md-6 col-form-label"> CORREO  </label>
+                                <input type="text" value="" name="ApellidoMaterno" class="form-control" />
+
+                                <label class="col-md-6 col-form-label">  DIA   </label>
+                                <input type="text" value="" name="Telefono" class="form-control" />
+
+                                <label class="col-md-6 col-form-label">  MES  </label>
+                                <input type="text" value="" name="Ciudad" class="form-control" />
+
+                                <label class="col-md-6 col-form-label">AÑO   </label>
+                                <input type="text" value="" name="Correo" class="form-control" />
+
+
+                            </div>
+                        </div>
+                    </div>
+                    @*COLOR DE FONDO DE LA PARTE DE ABAJO*@
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
